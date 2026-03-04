@@ -13,44 +13,59 @@
 
 ## 安装方式
 
-> 以下命令均在**项目根目录**的 PowerShell 中执行。需要能访问内网 `192.168.3.200`。
+> 安装目标目录默认为 `.claude/skills`，可通过 `--target` 自定义。  
+> 需要能访问内网 `192.168.3.200`。
 
-### 方式一：一键安装（推荐，无需手动 clone）
+### 方式一：npx（推荐，无需预先安装任何东西）
+
+```bash
+# 安装全部 skill
+npx http://192.168.3.200/claude-skill/cwork-skills --all
+
+# 只安装指定 skill
+npx http://192.168.3.200/claude-skill/cwork-skills --skill cwork-file-upload
+
+# 查看可用列表
+npx http://192.168.3.200/claude-skill/cwork-skills --list
+```
+
+### 方式二：npm 全局安装（适合长期使用）
+
+```bash
+# 安装一次
+npm install -g http://192.168.3.200/claude-skill/cwork-skills.git
+
+# 之后随时使用
+cwork-skills --all
+cwork-skills --skill cwork-file-upload
+cwork-skills --list
+```
+
+### 方式三：PowerShell 一键安装（无 Node.js 时）
 
 ```powershell
+# 下载脚本
+Invoke-WebRequest http://192.168.3.200/claude-skill/cwork-skills/raw/branch/master/bootstrap.ps1 -OutFile bootstrap.ps1
+
 # 安装全部 skill
-Invoke-WebRequest http://192.168.3.200/claude-skill/cwork-skills/raw/branch/master/bootstrap.ps1 -OutFile bootstrap.ps1; .\bootstrap.ps1
+.\bootstrap.ps1
 
 # 只安装指定 skill
 .\bootstrap.ps1 -Skill cwork-file-upload
 ```
 
-> 脚本会自动把仓库 clone 到 `%TEMP%\cwork-skills-bootstrap`，然后安装到 `.claude/skills/`。  
-> 下次执行会自动 `git pull` 更新。
+### 方式四：手动 clone（需要 Python）
 
-### 方式二：手动 clone 后安装
-
-```powershell
-# 克隆一次（只需做一次）
+```bash
 git clone http://192.168.3.200/claude-skill/cwork-skills.git
-
-# 安装全部 skill
 python cwork-skills/install.py --all --target .claude/skills
-
-# 仅安装指定 skill
-python cwork-skills/install.py --skill cwork-file-upload --target .claude/skills
-
-# 查看可用列表
-python cwork-skills/install.py --list
 ```
 
 ---
 
 ## 贡献新 Skill
 
-在仓库根目录新建子目录（目录名即 skill 名），并在其中创建 `SKILL.md`，`install.py` 会自动发现它。
-
-推荐结构：
+在仓库根目录新建子目录（目录名即 skill 名），并在其中创建 `SKILL.md`，安装工具会自动发现它。
 
 ```
 my-skill/
