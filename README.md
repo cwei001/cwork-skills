@@ -1,7 +1,7 @@
 # Claude Skills
 
 面向 Claude Code 的 Skill 集合，采用 **Monorepo** 统一管理。  
-私有仓库地址：`http://192.168.3.200/claude-skill/cwork-skills`
+GitHub：[cwei001/cwork-skills](https://github.com/cwei001/cwork-skills)
 
 ## 可用 Skill
 
@@ -13,27 +13,26 @@
 
 ## 安装方式
 
-> 安装目标目录默认为 `.claude/skills`，可通过 `--target` 自定义。  
-> 需要能访问内网 `192.168.3.200`。
+> 安装目标目录默认为 `.claude/skills`，可通过 `--target` 自定义。
 
-### 方式一：npx（推荐，无需预先安装任何东西）
+### 方式一：npx（推荐，无需预先安装）
 
 ```bash
+# 列出可用 skill
+npx cwei001/cwork-skills --list
+
 # 安装全部 skill
-npx git+http://192.168.3.200/claude-skill/cwork-skills.git --all
+npx cwei001/cwork-skills --all
 
 # 只安装指定 skill
-npx git+http://192.168.3.200/claude-skill/cwork-skills.git --skill cwork-file-upload
-
-# 查看可用列表
-npx git+http://192.168.3.200/claude-skill/cwork-skills.git --list
+npx cwei001/cwork-skills --skill cwork-file-upload
 ```
 
 ### 方式二：npm 全局安装（适合长期使用）
 
 ```bash
 # 安装一次
-npm install -g git+http://192.168.3.200/claude-skill/cwork-skills.git
+npm install -g cwei001/cwork-skills
 
 # 之后随时使用
 cwork-skills --all
@@ -45,20 +44,13 @@ cwork-skills --list
 
 ```powershell
 # 下载脚本
-Invoke-WebRequest http://192.168.3.200/claude-skill/cwork-skills/raw/branch/master/bootstrap.ps1 -OutFile bootstrap.ps1
+Invoke-WebRequest https://raw.githubusercontent.com/cwei001/cwork-skills/main/bootstrap.ps1 -OutFile bootstrap.ps1
 
 # 安装全部 skill
-.\bootstrap.ps1
+.\bootstrap.ps1 -RepoUrl https://github.com/cwei001/cwork-skills.git
 
 # 只安装指定 skill
-.\bootstrap.ps1 -Skill cwork-file-upload
-```
-
-### 方式四：手动 clone（需要 Python）
-
-```bash
-git clone http://192.168.3.200/claude-skill/cwork-skills.git
-python cwork-skills/install.py --all --target .claude/skills
+.\bootstrap.ps1 -RepoUrl https://github.com/cwei001/cwork-skills.git -Skill cwork-file-upload
 ```
 
 ---
