@@ -20,20 +20,20 @@
 
 ```bash
 # 安装全部 skill
-npx http://192.168.3.200/claude-skill/cwork-skills --all
+npx git+http://192.168.3.200/claude-skill/cwork-skills.git --all
 
 # 只安装指定 skill
-npx http://192.168.3.200/claude-skill/cwork-skills --skill cwork-file-upload
+npx git+http://192.168.3.200/claude-skill/cwork-skills.git --skill cwork-file-upload
 
 # 查看可用列表
-npx http://192.168.3.200/claude-skill/cwork-skills --list
+npx git+http://192.168.3.200/claude-skill/cwork-skills.git --list
 ```
 
 ### 方式二：npm 全局安装（适合长期使用）
 
 ```bash
 # 安装一次
-npm install -g http://192.168.3.200/claude-skill/cwork-skills.git
+npm install -g git+http://192.168.3.200/claude-skill/cwork-skills.git
 
 # 之后随时使用
 cwork-skills --all
