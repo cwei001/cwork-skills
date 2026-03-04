@@ -214,7 +214,6 @@ class CworkFileClient:
         if parse_image is not None:
             params["parseImage"] = parse_image
         raw = self._request_json("GET", "/file-convert/api/getFileContent", params=params)
-        # 该接口文档未说明是否包 resultCode，这里兼容两种：有 resultCode 就按通用结构，否则直接返回
         if isinstance(raw, dict) and "resultCode" in raw:
             return _check_result(raw)
         return raw
@@ -359,7 +358,6 @@ def main() -> None:
             save_to_knowledge=args.save_to_knowledge,
             parent_id=args.parent_id,
         )
-        # 最终输出（便于复制粘贴）
         out: Dict[str, Any] = {"resourceId": resource_id}
         if doc_id:
             out["docId"] = doc_id
@@ -390,6 +388,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-

@@ -32,9 +32,10 @@ description: Cwork 文件分片上传/秒传/断点续传与知识库入库操�
 
 ## 快速开始（推荐用脚本）
 
-### 依赖安装
+> **路径说明**：以下命令假设本 skill 已安装到 `.claude/skills/cwork-file-upload/`。
+> 若通过 `install.py` 安装，路径由工具自动处理；手动使用时请替换为实际路径。
 
-在仓库根目录执行：
+### 依赖安装
 
 ```bash
 pip install -r .claude/skills/cwork-file-upload/requirements.txt
@@ -89,29 +90,4 @@ python .claude/skills/cwork-file-upload/scripts/upload_file.py file-content ^
 ## 资源（本 Skill 内置）
 
 - **`scripts/upload_file.py`**：可执行 CLI，支持上传/合并/入库/取下载链接/取文本/取最近上传
-- **`references/api_reference.md`**：你提供的接口文档（已整理入库）
-
-## 团队分享/安装（推荐流程）
-
-### 打包（发布者执行）
-
-在仓库根目录执行：
-
-```bash
-python .claude/skills/skill-creator/scripts/package_skill.py .claude/skills/cwork-file-upload ./dist
-```
-
-会生成 `dist/cwork-file-upload.skill`，把这个文件发给同事（也可以放到 Git Release/制品库/网盘）。
-
-> 如果打包时报缺少 `yaml`，安装一次即可：`python -m pip install --user PyYAML`
-
-### 安装（使用者执行）
-
-把 `.skill` 下载到本地后，在仓库根目录执行：
-
-```bash
-python .claude/skills/skill-creator/scripts/install_skill.py ./dist/cwork-file-upload.skill --path .claude/skills
-```
-
-如果你们的项目通过 `AGENTS.md` 注册 skills，安装后还需要把 `cwork-file-upload` 条目加入 `AGENTS.md` 的 `<available_skills>`。
-
+- **`references/api_reference.md`**：接口文档
