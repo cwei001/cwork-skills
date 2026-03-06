@@ -4,10 +4,9 @@
 
 ### 环境配置
 
-| 环境 | Base URL | 用途 |
-|------|----------|------|
-| **测试环境** | `https://cwork-api-test.xgjktech.com.cn/open-api` | 开发测试 |
-| **生产环境** | `https://sg-al-cwork-web.mediportal.com.cn/open-api` | 正式使用 |
+| 环境 | Base URL |
+|------|----------|
+| **生产环境** | `https://sg-al-cwork-web.mediportal.com.cn/open-api` |
 
 ### 认证方式
 
@@ -27,7 +26,7 @@ https://{域名}/open-api/{接口地址}
 
 **示例**:
 ```bash
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=2014631829004374017' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=2014631829004374017' \
   -H 'appKey: XXXXXXXX'
 ```
 
@@ -383,7 +382,7 @@ curl -X POST 'https://.../bp/task/relation/pageAllReports' \
 
 **步骤 1 - 获取周期**：
 ```bash
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/period/getAllPeriod' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/period/getAllPeriod' \
   -H 'appKey: XXXXXXXX'
 Response: { "data": [{ "id": "2026", "name": "2026年度" }] }
 → periodId = "2026"
@@ -391,7 +390,7 @@ Response: { "data": [{ "id": "2026", "name": "2026年度" }] }
 
 **步骤 2 - 获取分组树**：
 ```bash
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/group/getTree?periodId=2026' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/group/getTree?periodId=2026' \
   -H 'appKey: XXXXXXXX'
 Response: { "data": [{ "id": "prod_dept", "name": "产品部" }] }
 → groupId = "prod_dept"
@@ -399,7 +398,7 @@ Response: { "data": [{ "id": "prod_dept", "name": "产品部" }] }
 
 **步骤 3 - 获取任务树**：
 ```bash
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/v2/getSimpleTree?groupId=prod_dept&periodId=2026' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/v2/getSimpleTree?groupId=prod_dept&periodId=2026' \
   -H 'appKey: XXXXXXXX'
 Response: { "data": [{ "id": "goal_123", "name": "提升用户体验" }] }
 → goalId = "goal_123"
@@ -407,14 +406,14 @@ Response: { "data": [{ "id": "goal_123", "name": "提升用户体验" }] }
 
 **步骤 4 - 获取目标详情**：
 ```bash
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=goal_123' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=goal_123' \
   -H 'appKey: XXXXXXXX'
 → 返回完整目标信息 + 所有关键成果
 ```
 
 **步骤 5 - 查询汇报记录**：
 ```bash
-curl -X POST 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/relation/pageAllReports' \
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/relation/pageAllReports' \
   -H 'appKey: XXXXXXXX' \
   -H 'Content-Type: application/json' \
   -d '{"taskId": "goal_123", "page": 1, "size": 10}'
@@ -425,7 +424,7 @@ curl -X POST 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/relation/p
 
 ```bash
 # 直接查目标详情，跳过前面的步骤
-curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=2014631829004374017' \
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/v2/getGoalAndKeyResult?id=2014631829004374017' \
   -H 'appKey: XXXXXXXX'
 ```
 
@@ -433,7 +432,7 @@ curl -X GET 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/v2/getGoalA
 
 ```bash
 # 使用关键成果 ID 查询汇报
-curl -X POST 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/relation/pageAllReports' \
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/bp/task/relation/pageAllReports' \
   -H 'appKey: XXXXXXXX' \
   -H 'Content-Type: application/json' \
   -d '{"taskId": "kr_001", "page": 1, "size": 10}'
@@ -462,7 +461,7 @@ curl -X POST 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/relation/p
 2. **必须先拿 periodId**：大部分查询都需要 periodId 作为基础参数
 3. **树形结构遍历**：groupId 和 taskId 需要从树形结构中逐级提取
 4. **ID 复用**：目标、成果、举措的 ID 均可作为 taskId 查询汇报
-5. **环境切换**：测试/生产环境域名不同，appKey 也不同
+5. **环境配置**：生产环境域名为 `sg-al-cwork-web.mediportal.com.cn`，appKey 需替换为实际密钥
 6. **灵活组合**：根据业务需求灵活组合接口，不必拘泥于5步法
 
 ---
@@ -473,8 +472,7 @@ curl -X POST 'https://cwork-api-test.xgjktech.com.cn/open-api/bp/task/relation/p
 
 ### 环境设置
 ```bash
-export BP_APP_KEY=your_api_key
-export BP_ENV=test  # 或 production
+export BP_ENV=production
 ```
 
 ### 快速查询

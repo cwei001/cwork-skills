@@ -6,8 +6,8 @@ BP API Client - 命令行工具
 🔒 安全提醒：API Key 每次需通过 --key 参数提供，绝不存储到环境变量
 
 Usage:
-    # 设置环境（仅设置环境，不存储 Key）
-    export BP_ENV=production  # 或 test
+    # 设置环境
+    export BP_ENV=production
 
     # 查询周期
     python bp_client.py get-periods --key <your_api_key>
@@ -40,10 +40,6 @@ from urllib.parse import urljoin
 
 # 环境配置
 ENV_CONFIG = {
-    "test": {
-        "base_url": "https://cwork-api-test.xgjktech.com.cn/open-api",
-        "description": "测试环境"
-    },
     "production": {
         "base_url": "https://sg-al-cwork-web.mediportal.com.cn/open-api",
         "description": "生产环境"
@@ -51,16 +47,16 @@ ENV_CONFIG = {
 }
 
 # 全局配置（从命令行参数设置）
-_global_config = {"app_key": None, "env": "test"}
+_global_config = {"app_key": None, "env": "production"}
 
-def set_global_config(app_key, env="test"):
+def set_global_config(app_key, env="production"):
     """设置全局配置（由主程序调用）"""
     _global_config["app_key"] = app_key
     _global_config["env"] = env
 
 def get_config():
     """获取配置"""
-    env = _global_config.get("env") or os.environ.get("BP_ENV", "test")
+    env = _global_config.get("env") or os.environ.get("BP_ENV", "production")
     app_key = _global_config.get("app_key")
     
     if not app_key:
@@ -250,8 +246,8 @@ def main():
     
     # 全局参数
     parser.add_argument("--key", required=True, help="API Key（必填，仅本次使用）")
-    parser.add_argument("--env", default="test", choices=["test", "production"], 
-                       help="环境: test 或 production (默认: test)")
+    parser.add_argument("--env", default="production", choices=["production"], 
+                       help="环境: production (默认: production)")
     
     subparsers = parser.add_subparsers(dest="command", help="可用命令")
     

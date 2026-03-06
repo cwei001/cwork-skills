@@ -146,7 +146,7 @@
 
 | 环境 | 域名 | Base URL |
 |------|------|----------|
-| **测试环境** | cwork-web-test.xgjktech.com.cn | `https://cwork-web-test.xgjktech.com.cn/open-api` |
+| **生产环境** | sg-al-cwork-web.mediportal.com.cn | `https://sg-al-cwork-web.mediportal.com.cn/open-api` |
 
 ### 5.2 认证
 
@@ -164,7 +164,7 @@ Header:
 
 ## 六、相关资源
 
-- 接口完整文档：https://cwork-web-test.xgjktech.com.cn/dev-docs/web/dist/#/solutions
+- 接口完整文档：https://sg-al-cwork-web.mediportal.com.cn/dev-docs/web/dist/#/solutions
 
 ---
 

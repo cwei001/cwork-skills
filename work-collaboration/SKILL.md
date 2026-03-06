@@ -40,7 +40,7 @@ description: 工作协同系统助手。调用《工作协同》系统API，实�
 | 必须信息 | 说明 |
 |---------|------|
 | **API Key** | 需要用户提供（每次询问，不存储） |
-| **环境** | 测试环境 `cwork-web-test.xgjktech.com.cn` |
+| **环境** | 生产环境 `sg-al-cwork-web.mediportal.com.cn` |
 
 ---
 
@@ -50,8 +50,9 @@ description: 工作协同系统助手。调用《工作协同》系统API，实�
 
 ```
 appKey: {你的AppKey}
-Content-Type: application/json
 ```
+
+> POST 请求需额外携带 `Content-Type: application/json`
 
 ---
 
@@ -59,7 +60,27 @@ Content-Type: application/json
 
 | 环境 | Base URL |
 |------|----------|
-| **测试环境** | `https://cwork-web-test.xgjktech.com.cn/open-api` |
+| **生产环境** | `https://sg-al-cwork-web.mediportal.com.cn/open-api` |
+
+### URL 格式
+
+```
+https://{域名}/open-api/{接口地址}
+```
+
+**调用示例**（GET 请求）：
+```bash
+curl -X GET 'https://sg-al-cwork-web.mediportal.com.cn/open-api/task/list' \
+  -H 'appKey: XXXXXXXX'
+```
+
+**调用示例**（POST 请求）：
+```bash
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/task/create' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "任务标题", "assignee": "张三"}'
+```
 
 > 🔒 **安全提示**: API Key 仅用于单次请求，不得存储。
 
@@ -105,15 +126,17 @@ Content-Type: application/json
 **助手**：请提供 API Key，然后调用：
 
 ```bash
-POST /task/create
-{
- "title": "完成Q1销售报告",
- "objective": "完成2026年第一季度销售数据分析报告",
- "requirements": "包含各区销售数据、同比增长分析、下季度预测",
- "deadline": "2026-03-15 18:00:00",
- "priority": "high",
- "assignee": "张三"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/task/create' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "title": "完成Q1销售报告",
+    "objective": "完成2026年第一季度销售数据分析报告",
+    "requirements": "包含各区销售数据、同比增长分析、下季度预测",
+    "deadline": "2026-03-15 18:00:00",
+    "priority": "high",
+    "assignee": "张三"
+  }'
 ```
 
 ---
@@ -125,13 +148,15 @@ POST /task/create
 **助手**：
 
 ```bash
-POST /work-report/report/record/submit
-{
- "subject": "本周工作进展",
- "content": "<p>本周完成工作：</p><p>1. 完成3家客户对接</p><p>2. 整理用户需求文档</p>",
- "sendUsers": ["李四"],
- "type": 1
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/work-report/report/record/submit' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "subject": "本周工作进展",
+    "content": "<p>本周完成工作：</p><p>1. 完成3家客户对接</p><p>2. 整理用户需求文档</p>",
+    "sendUsers": ["李四"],
+    "type": 1
+  }'
 ```
 
 ---
@@ -144,19 +169,16 @@ POST /work-report/report/record/submit
 
 ```bash
 # 1. 查询汇报获取ID
-POST /work-report/report/record/inbox
-{
- "pageIndex": 1,
- "pageSize": 20,
- "main": "月度工作总结"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/work-report/report/record/inbox' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"pageIndex": 1, "pageSize": 20, "main": "月度工作总结"}'
 
 # 2. 回复
-POST /work-report/report/record/reply
-{
- "reportRecordId": "获取到的ID",
- "contentHtml": "<p>已阅，继续加油！</p>"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/work-report/report/record/reply' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"reportRecordId": "获取到的ID", "contentHtml": "<p>已阅，继续加油！</p>"}'
 ```
 
 ---
@@ -169,19 +191,16 @@ POST /work-report/report/record/reply
 
 ```bash
 # 1. 查询汇报获取ID
-POST /work-report/report/record/inbox
-{
- "main": "项目方案",
- "needDecision": true
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/work-report/report/record/inbox' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"main": "项目方案", "needDecision": true}'
 
 # 2. 提交决策
-POST /decision/submit
-{
- "reportId": "汇报ID",
- "decisionType": "decision",
- "content": "同意立项，下周启动"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/decision/submit' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"reportId": "汇报ID", "decisionType": "decision", "content": "同意立项，下周启动"}'
 ```
 
 ---
@@ -194,20 +213,21 @@ POST /decision/submit
 
 ```bash
 # 1. 提交汇报
-POST /work-report/report/record/submit
-{
- "subject": "Q1销售报告已完成",
- "content": "<p>报告已完成，请查收。</p>",
- "sendUsers": ["任务创建人"],
- "relatedTaskId": "任务ID"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/work-report/report/record/submit' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "subject": "Q1销售报告已完成",
+    "content": "<p>报告已完成，请查收。</p>",
+    "sendUsers": ["任务创建人"],
+    "relatedTaskId": "任务ID"
+  }'
 
 # 2. 结束任务
-POST /task/complete
-{
- "taskId": "任务ID",
- "reportId": "汇报ID"
-}
+curl -X POST 'https://sg-al-cwork-web.mediportal.com.cn/open-api/task/complete' \
+  -H 'appKey: XXXXXXXX' \
+  -H 'Content-Type: application/json' \
+  -d '{"taskId": "任务ID", "reportId": "汇报ID"}'
 ```
 
 ---
@@ -233,7 +253,7 @@ POST /task/complete
 
 ## 十、相关资源
 
-- 接口完整文档：https://cwork-web-test.xgjktech.com.cn/dev-docs/web/dist/#/solutions
+- 接口完整文档：https://sg-al-cwork-web.mediportal.com.cn/dev-docs/web/dist/#/solutions
 
 ---
 
