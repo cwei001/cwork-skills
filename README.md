@@ -7,7 +7,11 @@ GitHub：[cwei001/cwork-skills](https://github.com/cwei001/cwork-skills)
 
 | Skill | 说明 |
 |---|---|
+| [bp-alignment-checker](./bp-alignment-checker/) | BP目标承接合理性检查工具：基于递归分治法，自动检查BP目标体系中所有层级的承接关系是否合理。 |
+| [bp-api-client](./bp-api-client/) | BP 目标管理系统助手。支持 BP 知识问答与数据查询。 |
+| [bp-data-viewer](./bp-data-viewer/) | BP目标管理数据查询工具：查询公司BP系统中的周期、分组、目标、关键成果、关键举措和汇报数据。 |
 | [cwork-file-upload](./cwork-file-upload/) | Cwork 文件分片上传/秒传/断点续传与知识库入库操作 |
+| [work-collaboration](./work-collaboration/) | 工作协同系统助手。调用《工作协同》系统API，实现任务管理、汇报提交与回复、反馈处理、决策建议等功能。 |
 
 ---
 
@@ -19,20 +23,20 @@ GitHub：[cwei001/cwork-skills](https://github.com/cwei001/cwork-skills)
 
 ```bash
 # 列出可用 skill
-npx cwei001/cwork-skills --list
+npx -y github:cwei001/cwork-skills --list
 
 # 安装全部 skill
-npx cwei001/cwork-skills --all
+npx -y github:cwei001/cwork-skills --all
 
 # 只安装指定 skill
-npx cwei001/cwork-skills --skill cwork-file-upload
+npx -y github:cwei001/cwork-skills --skill cwork-file-upload
 ```
 
 ### 方式二：npm 全局安装（适合长期使用）
 
 ```bash
 # 安装一次
-npm install -g cwei001/cwork-skills
+npm install -g github:cwei001/cwork-skills
 
 # 之后随时使用
 cwork-skills --all
@@ -51,6 +55,15 @@ Invoke-WebRequest https://raw.githubusercontent.com/cwei001/cwork-skills/main/bo
 
 # 只安装指定 skill
 .\bootstrap.ps1 -RepoUrl https://github.com/cwei001/cwork-skills.git -Skill cwork-file-upload
+```
+
+### 方式四：在 OpenClaw 中安装
+
+如果您在 OpenClaw 中使用，您可以直接使用自带命令通过 URL 进行安装：
+
+```bash
+# 安装技能库
+openclaw skills install https://github.com/cwei001/cwork-skills.git
 ```
 
 ---
