@@ -7,13 +7,22 @@
   },
   "files": [
     "bin/",
+    "bp-alignment-checker/",
+    "bp-api-client/",
+    "bp-data-viewer/",
     "cwork-file-upload/",
+    "work-collaboration/",
     "install.py",
     "README.md"
   ],
   "engines": {
     "node": ">=14"
   },
-  "keywords": ["claude", "claude-code", "skill", "cwork"],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "cwork"
+  ],
   "license": "MIT"
 }
