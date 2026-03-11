@@ -23,5 +23,14 @@
     "skill",
     "cwork"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "openclaw": {
+    "extensions": [
+      "./bp-alignment-checker/SKILL.md",
+      "./bp-api-client/SKILL.md",
+      "./bp-data-viewer/SKILL.md",
+      "./cwork-file-upload/SKILL.md",
+      "./work-collaboration/SKILL.md"
+    ]
+  }
 }
