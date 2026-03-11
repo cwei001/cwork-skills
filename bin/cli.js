@@ -3,19 +3,19 @@
  * cwork-skills CLI
  *
  * 用法（npx 临时运行，无需安装）：
- *   npx http://192.168.3.200/claude-skill/cwork-skills --all
- *   npx http://192.168.3.200/claude-skill/cwork-skills --skill cwork-file-upload
- *   npx http://192.168.3.200/claude-skill/cwork-skills --list
+ *   npx -y github:cwei001/cwork-skills --all
+ *   npx -y github:cwei001/cwork-skills --skill cwork-file-upload
+ *   npx -y github:cwei001/cwork-skills --list
  *
  * 用法（全局安装后）：
- *   npm install -g http://192.168.3.200/claude-skill/cwork-skills.git
+ *   npm install -g github:cwei001/cwork-skills
  *   cwork-skills --all
  *   cwork-skills --skill cwork-file-upload --target .claude/skills
  */
 
 'use strict';
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
 // 包根目录（bin/../）
@@ -23,9 +23,9 @@ const PKG_ROOT = path.resolve(__dirname, '..');
 
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
 
-function log(msg)  { process.stdout.write(`[*] ${msg}\n`); }
-function ok(msg)   { process.stdout.write(`[OK] ${msg}\n`); }
-function err(msg)  { process.stderr.write(`[ERR] ${msg}\n`); process.exit(1); }
+function log(msg) { process.stdout.write(`[*] ${msg}\n`); }
+function ok(msg) { process.stdout.write(`[OK] ${msg}\n`); }
+function err(msg) { process.stderr.write(`[ERR] ${msg}\n`); process.exit(1); }
 
 /** 递归复制目录 */
 function copyDir(src, dst) {
@@ -92,10 +92,10 @@ cwork-skills — Claude Code Skill 安装工具
   process.exit(0);
 }
 
-const target    = getArg('--target') || '.claude/skills';
+const target = getArg('--target') || '.claude/skills';
 const skillName = getArg('--skill');
-const all       = hasFlag('--all');
-const list      = hasFlag('--list');
+const all = hasFlag('--all');
+const list = hasFlag('--list');
 
 const available = discoverSkills();
 
