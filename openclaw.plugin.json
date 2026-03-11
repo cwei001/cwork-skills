@@ -1,0 +1,12 @@
+{
+    "name": "cwork-skills",
+    "version": "1.0.0",
+    "description": "Claude Code Skills for Cwork",
+    "extensions": [
+        "./bp-alignment-checker/SKILL.md",
+        "./bp-api-client/SKILL.md",
+        "./bp-data-viewer/SKILL.md",
+        "./cwork-file-upload/SKILL.md",
+        "./work-collaboration/SKILL.md"
+    ]
+}
