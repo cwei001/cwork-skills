@@ -50,7 +50,7 @@ cwork-skills --list
 
 ```bash
 # 安装技能库
-openclaw skills install https://github.com/cwei001/cwork-skills.git
+openclaw plugins install https://github.com/cwei001/cwork-skills.git
 ```
 
 ---
