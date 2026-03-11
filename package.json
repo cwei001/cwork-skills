@@ -12,7 +12,6 @@
     "bp-data-viewer/",
     "cwork-file-upload/",
     "work-collaboration/",
-    "install.py",
     "README.md"
   ],
   "engines": {
