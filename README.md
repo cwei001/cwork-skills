@@ -17,6 +17,35 @@ GitHub：[cwei001/cwork-skills](https://github.com/cwei001/cwork-skills)
 
 ## 安装方式
 
+> 安装目标目录默认为 `.claude/skills`，可通过 `--target` 自定义。
+
+### 方式一：npx（推荐，无需预先安装）
+
+```bash
+# 列出可用 skill
+npx -y github:cwei001/cwork-skills --list
+
+# 安装全部 skill
+npx -y github:cwei001/cwork-skills --all
+
+# 只安装指定 skill
+npx -y github:cwei001/cwork-skills --skill cwork-file-upload
+```
+
+### 方式二：npm 全局安装（适合长期使用）
+
+```bash
+# 安装一次
+npm install -g github:cwei001/cwork-skills
+
+# 之后随时使用
+cwork-skills --all
+cwork-skills --skill cwork-file-upload
+cwork-skills --list
+```
+
+### 方式三：在 OpenClaw 中安装
+
 如果您在 OpenClaw 中使用，您可以直接使用自带命令通过 URL 进行安装：
 
 ```bash
